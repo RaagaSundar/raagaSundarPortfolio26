@@ -16,11 +16,11 @@ import '../styles/global.scss'
   <head>
     <meta charset="utf-8" />
 
-    <title>Raaga Sundar — Creative Developer</title>
+    <title>Raaga Sundar</title>
 
     <meta
       name="description"
-      content="Raaga Sundar — creative developer building fast, polished, and interactive experiences for the web. See my work and get in touch." />
+      content="Raaga Sundar. Aerospace Engineering and Computer Science student at Georgia Tech. Undergraduate researcher (ASDL), ICAS 2026 author, and builder." />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
@@ -42,14 +42,14 @@ import '../styles/global.scss'
     />
     <meta name="apple-mobile-web-app-title" content="Raaga Sundar" />
 
-    <meta name="theme-color" content="#160000" />
-    <meta name="msapplication-navbutton-color" content="#160000" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="#160000" />
+    <meta name="theme-color" content="#0b1325" />
+    <meta name="msapplication-navbutton-color" content="#0b1325" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0b1325" />
 
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Raaga Sundar — Creative Developer" />
-    <meta property="og:description" content="Raaga Sundar — creative developer building fast, polished, and interactive experiences for the web. See my work and get in touch." />
+    <meta property="og:title" content="Raaga Sundar, Aerospace Engineering + CS @ Georgia Tech" />
+    <meta property="og:description" content="Raaga Sundar, Aerospace Engineering and Computer Science @ Georgia Tech. Undergraduate researcher, ICAS 2026 author, and builder." />
     <meta property="og:url" content="https://your-domain.com/" />
     <meta property="og:site_name" content="Raaga Sundar" />
     <meta property="og:image" content="https://your-domain.com/images/og-image.png" />
@@ -118,17 +118,27 @@ import '../styles/global.scss'
 
     <div
       class="site-intro js-intro"
-      style="opacity: 1; position: fixed; top: 0; left: 0; z-index: 50; width: 100%; height: 100%; background: #F40C3F;"
+      style="opacity: 1; position: fixed; top: 0; left: 0; z-index: 50; width: 100%; height: 100%; background: #4a1521;"
     >
       <div class="sb-logo js-logo">
-        <div class="sb__path sb__path--v sb__path--v-1 js-logo-line-v"></div>
-        <div class="sb__path sb__path--h sb__path--h-1 js-logo-line-h"></div>
-        <div class="sb__path sb__path--v sb__path--v-2 js-logo-line-v"></div>
-        <div class="sb__path sb__path--v sb__path--v-3 js-logo-line-v"></div>
-        <div class="sb__path sb__path--h sb__path--h-2 js-logo-line-h"></div>
-        <div class="sb__path sb__path--v sb__path--v-4 js-logo-line-v"></div>
-        <div class="sb__path sb__path--h sb__path--h-3 js-logo-line-h"></div>
-        <div class="sb__path sb__path--v sb__path--v-5 js-logo-line-v"></div>
+        <svg
+          class="sb-logo__rs js-logo-rs"
+          width="100%"
+          height="100%"
+          viewBox="0 0 280 280"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <text
+            x="140"
+            y="150"
+            text-anchor="middle"
+            dominant-baseline="central"
+            font-family="'Bigger Display', 'Arial Black', sans-serif"
+            font-weight="700"
+            font-size="180"
+            fill="currentColor"
+          >RS</text>
+        </svg>
       </div><!-- .sb-logo -->
 
       <div class="site-intro__border site-intro__border--top js-border-top">
@@ -141,6 +151,22 @@ import '../styles/global.scss'
 
     <div class="site-mount js-mount"></div>
     <div class="site-contrast-mask js-contrast-mask"></div>
+
+    <div class="site-card-modal js-card-modal" aria-hidden="true">
+      <div class="site-card-modal__backdrop js-card-close"></div>
+
+      <div class="site-card-modal__panel" role="dialog" aria-modal="true">
+        <button
+          class="site-card-modal__close js-card-close"
+          type="button"
+          aria-label="Close"
+        >
+          <span></span><span></span>
+        </button>
+
+        <div class="site-card-modal__content js-card-content"></div>
+      </div>
+    </div>
 
     <SiteScrollbar />
   </body>
@@ -393,8 +419,7 @@ import '../styles/global.scss'
         const wrapper: HTMLElement = document.querySelector('.js-site-wrapper')
         const intro: HTMLElement = document.querySelector('.js-intro')
         const mount: HTMLElement = document.querySelector('.js-mount')
-        const logoLinesV: NodeList = intro.querySelectorAll('.js-logo-line-v')
-        const logoLinesH: NodeList = intro.querySelectorAll('.js-logo-line-h')
+        const logoRs: HTMLElement = intro.querySelector('.js-logo-rs')
         const borderTop: HTMLElement = intro.querySelector('.js-border-top')
         const borderLeft: HTMLElement = intro.querySelector('.js-border-left')
         const borderRight: HTMLElement = intro.querySelector('.js-border-right')
@@ -411,65 +436,30 @@ import '../styles/global.scss'
         })
 
         tl.fromTo(
-          logoLinesV,
+          logoRs,
           {
-            scaleY: 0,
+            scale: 0.5,
+            opacity: 0,
           },
           {
-            scaleY: 1,
-            duration: 1,
-            ease: 'power4.inOut',
-            stagger: 0.15,
+            scale: 1,
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power4.out',
           },
           0
         )
 
-        tl.fromTo(
-          logoLinesH,
+        tl.to(
+          logoRs,
           {
-            scaleX: 0,
-          },
-          {
-            scaleX: 1,
-            duration: 0.4,
-            ease: 'power4.inOut',
-            stagger: 0,
-          },
-          1
-        )
-
-        tl.set(logoLinesV, {
-          transformOrigin: '50% 0',
-        })
-
-        tl.fromTo(
-          logoLinesV,
-          {
-            scaleY: 1,
-          },
-          {
-            scaleY: 0,
-            duration: 1,
-            ease: 'power4.in',
+            scale: 1.15,
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power3.in',
             immediateRender: false,
-            stagger: 0.1,
           },
-          2
-        )
-
-        tl.fromTo(
-          logoLinesH,
-          {
-            scaleY: 1,
-          },
-          {
-            scaleY: 0,
-            duration: 0.5,
-            ease: 'power4.in',
-            immediateRender: false,
-            stagger: 0.1,
-          },
-          2.1
+          2.2
         )
 
         tl.from(
@@ -526,6 +516,48 @@ import '../styles/global.scss'
       document.addEventListener('DOMContentLoaded', site.init, { once: true })
     } else {
       site.init()
+    }
+  </script>
+
+  <script>
+    // Work cards: open an in-site panel instead of following a link.
+    const cardModal = document.querySelector('.js-card-modal')
+
+    if (cardModal) {
+      const cardContent = cardModal.querySelector(
+        '.js-card-content'
+      ) as HTMLElement
+
+      const openCard = (html: string) => {
+        cardContent.innerHTML = html
+        cardModal.classList.add('is-open')
+        cardModal.setAttribute('aria-hidden', 'false')
+        document.documentElement.classList.add('is-modal-open')
+        try {
+          ;(window as any).lenis && (window as any).lenis.stop()
+        } catch (e) {}
+      }
+
+      const closeCard = () => {
+        cardModal.classList.remove('is-open')
+        cardModal.setAttribute('aria-hidden', 'true')
+        document.documentElement.classList.remove('is-modal-open')
+        try {
+          ;(window as any).lenis && (window as any).lenis.start()
+        } catch (e) {}
+      }
+
+      document.addEventListener('open-card', (e: any) =>
+        openCard(e.detail.html)
+      )
+
+      cardModal
+        .querySelectorAll('.js-card-close')
+        .forEach((el) => el.addEventListener('click', closeCard))
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCard()
+      })
     }
   </script>
 
@@ -723,6 +755,124 @@ import '../styles/global.scss'
       will-change: border-width;
 
       pointer-events: none;
+    }
+
+    .site-card-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+
+      @include flex(row, center, center);
+
+      padding: 1.5rem;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease(out-quint);
+
+      &.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      &__backdrop {
+        position: absolute;
+        inset: 0;
+
+        background: color(secondary);
+        opacity: 0.5;
+
+        cursor: pointer;
+      }
+
+      &__panel {
+        position: relative;
+        z-index: 1;
+
+        width: min(40rem, 100%);
+        max-height: 85vh;
+        padding: 3.5rem 3rem 3rem;
+
+        background: color(primary);
+        border: 1px solid color(secondary);
+
+        color: color(secondary);
+        overflow-y: auto;
+        transform: scale(0.9);
+        transition: transform 0.5s ease(out-quint);
+
+        @include mq(phone) {
+          padding: 3rem 1.5rem 2rem;
+        }
+      }
+
+      &.is-open &__panel {
+        transform: scale(1);
+      }
+
+      &__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+
+        width: 2.5rem;
+        height: 2.5rem;
+
+        appearance: none;
+        background: none;
+        border: 0;
+        cursor: pointer;
+
+        span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+
+          width: 1.25rem;
+          height: 2px;
+
+          background: color(secondary);
+
+          &:nth-child(1) {
+            transform: translate3d(-50%, -50%, 0) rotate(45deg);
+          }
+
+          &:nth-child(2) {
+            transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+          }
+        }
+      }
+
+      &__content {
+        :global(h3) {
+          margin: 0 0 1rem;
+
+          font: 700 2.25rem / 1.05 font-family(bigger);
+          text-transform: uppercase;
+        }
+
+        :global(p) {
+          margin: 0 0 0.75rem;
+
+          font: 200 1.2rem / 1.45 font-family(editorial);
+        }
+
+        :global(p.meta) {
+          margin-top: 1rem;
+
+          font: 400 0.8rem / 1.4 font-family(fraktion);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          opacity: 0.7;
+        }
+
+        :global(ul) {
+          margin: 0;
+          padding-left: 1.2rem;
+
+          font: 200 1.2rem / 1.7 font-family(editorial);
+        }
+      }
     }
   </style>
 </html>

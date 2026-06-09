@@ -1,130 +1,60 @@
 ---
 import AWork from './AWork.astro'
-import dummyVideo from '/src/assets/works/Dummy.mp4'
 
-const videos = await Astro.glob<{ default: any }>('/src/assets/works/*.mp4')
-
-// Your projects live here. Replace each `title` and `site` (the link it opens)
-// with your own work. Video loops were trimmed to keep the repo lightweight.
-const info = {
-  Pen: {
-    title: 'Featured Work',
-    site: 'https://github.com/your-username',
+// Each card opens an in-site panel (no external link). Edit the caption (card
+// face) and the detail HTML (what shows in the panel). Add images later.
+const works = [
+  {
+    caption: 'Georgia State Rep, Invention Convention Worldwide',
+    detail:
+      '<h3>Georgia State Representative</h3><p>Invention Convention Worldwide by RTX.</p><p class="meta">Issued by RTX, July 2025</p>',
   },
-  Dummy1: {
-    title: 'Project 1',
-    site: 'https://github.com/your-username',
+  {
+    caption: '1st Place State, K-12 InVenture Prize',
+    detail:
+      '<h3>1st Place, State Finals K-12 InVenture Prize</h3><p>At Georgia Tech, with the $1,000 IronCAD Expertise in CAD Modeling Award.</p><p class="meta">Issued by Georgia Institute of Technology and IronCAD, June 2025</p>',
   },
-  Dummy2: {
-    title: 'Project 2',
-    site: 'https://github.com/your-username',
+  {
+    caption: 'UnitedWay STEMUp $800 Startup Grant',
+    detail:
+      '<h3>STEMUp Business Startup Grant</h3><p>An $800 grant to launch a student venture.</p><p class="meta">Issued by UnitedWay, June 2025</p>',
   },
-  Dummy3: {
-    title: 'Project 3',
-    site: 'https://github.com/your-username',
+  {
+    caption: '3rd Place National, UAS4STEM 2024',
+    detail:
+      '<h3>3rd Place, National Advanced Division, UAS4STEM 2024</h3><p>With a $10,000 Airbus sponsorship. Chief Engineer, Lead Safety Officer, and Video Analyst of the McIntosh Aeronautics Drone Team.</p><p class="meta">Issued by UAS4STEM, Skydio, and Airbus, July 2024</p>',
   },
-  Dummy4: {
-    title: 'Project 4',
-    site: 'https://github.com/your-username',
+  {
+    caption: 'GHP State, Mechanical Design and Math',
+    detail:
+      '<h3>Governor’s Honors Program</h3><p>State selection in Mechanical Design Engineering and Mathematics.</p><p class="meta">Issued by the Governor’s Honors Program, November 2023</p>',
   },
-  Dummy5: {
-    title: 'Project 5',
-    site: 'https://github.com/your-username',
+  {
+    caption: '1st Place International, UAS4STEM 2023',
+    detail:
+      '<h3>1st Place, International Advanced Division, UAS4STEM 2023</h3><p>With a $10,000 Airbus sponsorship. Chief Engineer, Lead Safety Officer, and Video Analyst of the McIntosh Aeronautics Drone Team.</p><p class="meta">Issued by UAS4STEM, Skydio, and Airbus, July 2023</p>',
   },
-  Dummy6: {
-    title: 'Project 6',
-    site: 'https://github.com/your-username',
+  {
+    caption: 'STEM@GTRI Superior Creativity and Design Thinking',
+    detail:
+      '<h3>Certificate of Superior Creativity and Design Thinking</h3><p>STEAM Challenge.</p><p class="meta">Issued by Georgia Tech Research Institute, March 2023</p>',
   },
-  Dummy7: {
-    title: 'Project 7',
-    site: 'https://github.com/your-username',
+  {
+    caption: '1st Place National Taekwondo, 2nd Degree Black Belt',
+    detail:
+      '<h3>1st Place, National Taekwondo Sparring</h3><p>2nd Degree Black Belt.</p><p class="meta">Issued by World Taekwondo Federation, April 2018</p>',
   },
-  Dummy8: {
-    title: 'Project 8',
-    site: 'https://github.com/your-username',
+  {
+    caption: 'Top Skills',
+    detail:
+      '<h3>Top Skills</h3><ul><li>Ultimaker Cura</li><li>Statistical Analysis</li><li>Machine Learning</li></ul>',
   },
-  Dummy9: {
-    title: 'Project 9',
-    site: 'https://github.com/your-username',
+  {
+    caption: 'Languages',
+    detail:
+      '<h3>Languages</h3><ul><li>English (Native or Bilingual)</li><li>Tamil (Native or Bilingual)</li><li>Spanish (Limited Working)</li></ul>',
   },
-  Dummy10: {
-    title: 'Project 10',
-    site: 'https://github.com/your-username',
-  }
-}
-
-let projects = []
-let pens = []
-
-// I removed the video loops to keep the repo lightweight.
-// But this is where I normally fetch and assign the videos for each project in the portfolio.
-videos.forEach((video, index) => {
-  const src = video.default
-
-  const key = src.split('-')[0].split('/').pop()
-  const project = info[key]
-  if (!project) return
-  const caption = project.title
-  const site = project.site
-
-  if (key === 'Pen') {
-    pens.push({
-      caption,
-      site,
-      src,
-    })
-  } else {
-    projects.push({
-      caption,
-      site,
-      src,
-    })
-  }
-})
-
-// Create dummy projects with 3 videos each
-for (let i = 1; i <= 14; i++) {
-  const key = `Dummy${i}`
-  const project = info[key]
-  if (!project) continue
-
-  for (let j = 0; j < 4; j++) {
-    projects.push({
-      caption: `${project.title} - Video ${j + 1}`,
-      site: project.site,
-      src: dummyVideo
-    })
-  }
-}
-
-function shuffle(array) {
-  let currentIndex = array.length
-
-  while (currentIndex != 0) {
-    let randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex--
-    ;[array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ]
-  }
-}
-
-shuffle(projects)
-
-// Add pens in between projects regularly
-let works = []
-let chunkSize = Math.floor(projects.length / pens.length)
-let i = 0
-let j = 0
-while (i < projects.length) {
-  works.push(projects[i])
-  if (j < pens.length && (i + 1) % chunkSize === 0) {
-    works.push(pens[j])
-    j++
-  }
-  i++
-}
+]
 ---
 
 <section id="work" class="s-work" data-intersect>
@@ -143,10 +73,9 @@ while (i < projects.length) {
         {
           works.map((work, index) => (
             <AWork
-              cssClass="s__scene__work s__scene__work--video js-work"
+              cssClass="s__scene__work js-work"
               caption={work.caption}
-              site={work.site}
-              src={work.src}
+              detail={work.detail}
               index={String(index).padStart(4, '0')}
               total={String(works.length).padStart(2, '0')}
             />

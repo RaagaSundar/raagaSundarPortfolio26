@@ -4,17 +4,19 @@
 @use 'sass:map';
 
 $theme-colors: (
+  // Colored theme: deep burgundy background, warm off-white ink
   default: (
-    primary: #f40c3f,
-    secondary: #160000,
-    shadow: #540000,
-    white: #fff0eb,
+    primary: #4a1521,
+    secondary: #fdfbf7,
+    shadow: #2a0b12,
+    white: #fdfbf7,
   ),
 
+  // Mono theme: midnight navy background, near-white ink
   contrasted: (
-    primary: #fff2ed,
-    secondary: #160000,
-    shadow: #4d4040,
-    white: #fff0eb,
+    primary: #0b1325,
+    secondary: #fffffa,
+    shadow: #05080f,
+    white: #fffffa,
   ),
 );

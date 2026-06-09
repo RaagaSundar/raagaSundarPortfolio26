@@ -266,11 +266,11 @@ const { class: className } = Astro.props
               p.cursor.vy += Math.sin(mouse.a) * f * l * mouse.vs * 0.00065
             }
 
-            p.cursor.vx += (0 - p.cursor.x) * 0.005 // String tension
-            p.cursor.vy += (0 - p.cursor.y) * 0.005
+            p.cursor.vx += (0 - p.cursor.x) * 0.004 // String tension
+            p.cursor.vy += (0 - p.cursor.y) * 0.004
 
-            p.cursor.vx *= 0.925 // Friction/duration
-            p.cursor.vy *= 0.925
+            p.cursor.vx *= 0.94 // Friction/duration
+            p.cursor.vy *= 0.94
 
             p.cursor.x += p.cursor.vx * 2 // Strength
             p.cursor.y += p.cursor.vy * 2
@@ -292,8 +292,8 @@ const { class: className } = Astro.props
       }
 
       // Round to 2 decimals
-      coords.x = Math.round(coords.x * 10) / 10
-      coords.y = Math.round(coords.y * 10) / 10
+      coords.x = Math.round(coords.x * 100) / 100
+      coords.y = Math.round(coords.y * 100) / 100
 
       return coords
     }
@@ -334,8 +334,8 @@ const { class: className } = Astro.props
       const { mouse } = this
 
       // Smooth mouse movement
-      mouse.sx += (mouse.x - mouse.sx) * 0.1
-      mouse.sy += (mouse.y - mouse.sy) * 0.1
+      mouse.sx += (mouse.x - mouse.sx) * 0.075
+      mouse.sy += (mouse.y - mouse.sy) * 0.075
 
       // Mouse velocity
       const dx = mouse.x - mouse.lx
@@ -343,7 +343,7 @@ const { class: className } = Astro.props
       const d = Math.hypot(dx, dy)
 
       mouse.v = d
-      mouse.vs += (d - mouse.vs) * 0.1
+      mouse.vs += (d - mouse.vs) * 0.08
       mouse.vs = Math.min(100, mouse.vs)
 
       // Mouse last position

@@ -1,42 +1,38 @@
-# Raaga Sundar — Portfolio
+# Raaga Sundar Portfolio
 
 My personal portfolio, built with [Astro](https://astro.build).
 
-## 🚀 Getting Started
+## Getting started
 
-To run the project locally:
+Run it locally:
 
 ```bash
-# 1. Install dependencies
 npm install
-
-# 2. Start the dev server
 npm run dev
 ```
 
 Then open the URL shown in the terminal (usually http://localhost:4321).
 
-To build for production:
+Build for production:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## ✏️ Personalize
+## Personalize
 
-A few things still use placeholders — search the project for these and replace them:
+A few things are still placeholders. Search the project for these and swap them in:
 
-- `your-username` — your GitHub and LinkedIn handles (in `src/components/SiteHead.astro` and `src/components/SWork.astro`)
-- `your-domain.com` — your live domain (in `astro.config.mjs` and `src/pages/index.astro`)
-- The **Achievements** tiles in `src/components/SAbout.astro` — swap in your real achievements
-- The **Work** projects in `src/components/SWork.astro` — add your own project titles, links, and videos
-- The favicons in `public/icons/` and the social-share image at `public/images/og-image.png`
+- `your-username`: your LinkedIn and X (Twitter) handles in `src/components/SiteHead.astro`
+- `your-domain.com`: your live domain in `astro.config.mjs` and `src/pages/index.astro`
+- The favicons in `public/icons/` and the social share image at `public/images/og-image.png`
+- Work card images: add them to the card faces in `src/components/AWork.astro` when ready
 
-## 🙏 Credits
+## Credits
 
-Based on the open-source [AW 2025 Portfolio](https://github.com/AntoineW/AW-2025-Portfolio) by Antoine Wodniack, adapted and personalized.
+Built on the open-source [AW 2025 Portfolio](https://github.com/AntoineW/AW-2025-Portfolio) by Antoine Wodniack, adapted and personalized.
 
-## 📄 License
+## License
 
 The original project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. See `LICENSE.md` for details, and keep attribution to the original author.

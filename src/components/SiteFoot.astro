@@ -16,7 +16,7 @@
           font-family="'Bigger Display', 'Arial Black', sans-serif"
           font-weight="700"
           font-size="150"
-          fill="#160000"
+          fill="currentColor"
         >RS</text>
       </svg>
 
@@ -49,6 +49,10 @@
         @include mq(phone) {
           width: 1.875rem;
           height: 1.875rem;
+        }
+
+        text {
+          fill: color(secondary);
         }
       }
     }
