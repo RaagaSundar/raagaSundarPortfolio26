@@ -606,7 +606,7 @@ const achievements = {
       const x = awardBounding.left + awardBounding.width * 0.5 - elBounding.left
       const y = awardBounding.top + awardBounding.height * 0.5 - elBounding.top
 
-      const maxSmileys = window.safeWidth > 767 ? 10 : 5
+      const maxSmileys = window.safeWidth > 767 ? 6 : 3
       for (let i = 0; i < maxSmileys; i++) {
         const smiley = new Smiley(ctx, image, x, y)
 
@@ -699,8 +699,8 @@ const achievements = {
       this.image = image
 
       // Properties
-      this.width = 48
-      this.height = 48
+      this.width = 28
+      this.height = 28
       this.x = x
       this.y = y
       this.r = 0
