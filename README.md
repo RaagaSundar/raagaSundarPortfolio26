@@ -24,10 +24,10 @@ npm run preview
 
 A few things are still placeholders. Search the project for these and swap them in:
 
-- `your-username`: your LinkedIn and X (Twitter) handles in `src/components/SiteHead.astro`
-- `your-domain.com`: your live domain in `astro.config.mjs` and `src/pages/index.astro`
-- The favicons in `public/icons/` and the social share image at `public/images/og-image.png`
-- Work card images: add them to the card faces in `src/components/AWork.astro` when ready
+- `your-domain.com`: set your live domain in `astro.config.mjs` and `src/pages/index.astro`
+- Replace the favicons in `public/icons/` and add a share image at `public/images/og-image.png`
+- Swap the floating photos in `src/components/SMyWay.astro` (and `src/assets/frames/`) for your own
+- Add work card images to the card faces in `src/components/AWork.astro` when ready
 
 ## Credits
 
