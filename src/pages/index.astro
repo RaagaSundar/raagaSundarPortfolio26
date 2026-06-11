@@ -290,12 +290,29 @@ import '../styles/global.scss'
           observer.observe(el)
         })
 
-        // Site loaded event
+        // Site loaded event. Some in-app browsers (Instagram, etc.) fire
+        // `load` late or never, which would leave the sections waiting to
+        // animate, so fall back to a short timer.
         if (document.readyState === 'complete') {
           this.siteLoaded()
         } else {
           window.addEventListener('load', this.siteLoaded, { once: true })
+          setTimeout(() => this.siteLoaded(), 1000)
         }
+
+        // Safety net: if the intro stalls in a flaky webview, force the page
+        // visible and scrollable after a few seconds so it can never stay
+        // stuck behind the loader.
+        setTimeout(() => {
+          document.documentElement.classList.remove('is-scroll-blocked')
+          const introEl = document.querySelector('.js-intro')
+          if (introEl) introEl.remove()
+          const mountEl = document.querySelector('.js-mount') as HTMLElement
+          if (mountEl) mountEl.style.opacity = '1'
+          const heroEl = document.querySelector('.s-hero') as HTMLElement
+          if (heroEl) heroEl.style.opacity = '1'
+          this.siteLoaded()
+        }, 8000)
 
         this.onScroll()
       }
@@ -322,6 +339,8 @@ import '../styles/global.scss'
        * Set loaded class
        */
       siteLoaded() {
+        if (document.documentElement.classList.contains('is-loaded')) return
+
         document.documentElement.classList.add('is-loaded')
 
         Emitter.emit('siteLoaded')
