@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
+import vercel from '@astrojs/vercel/serverless';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -8,6 +9,14 @@ const __dirname = dirname(__filename);
 // https://astro.build/config
 export default defineConfig({
   site: 'https://raagasundar.com',
+
+  output: 'server',
+
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
 
   scopedStyleStrategy: 'class',
 
