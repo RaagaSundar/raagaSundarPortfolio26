@@ -727,6 +727,7 @@ const menu = [
         height: 48px;
 
         @include mq(phone) {
+          width: 44px;
           height: 100%;
         }
 
@@ -867,13 +868,7 @@ const menu = [
       }
 
       @include mq(phone) {
-        @include flex(column, center, center);
-
-        flex-grow: 0;
-
-        background: none;
-        border-left: 1px solid color(secondary);
-        order: 3;
+        display: none;
       }
 
       p {
