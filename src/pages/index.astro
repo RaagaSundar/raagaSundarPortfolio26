@@ -8,6 +8,7 @@ import SWork from '../components/SWork.astro'
 import SMyWay from '../components/SMyWay.astro'
 import SCTA from '../components/SCTA.astro'
 import ASeparator from '../components/ASeparator.astro'
+import Analytics from '@vercel/analytics/astro'
 
 import '../styles/global.scss'
 ---
@@ -157,6 +158,8 @@ import '../styles/global.scss'
     </div>
 
     <SiteScrollbar />
+
+    <Analytics />
   </body>
 
   <script>
